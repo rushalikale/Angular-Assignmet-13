@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <!--Header Part of Form-->
+    <div class="header">
+        <div class="h1 row">
+            <div class="col-6 top">
+                <span>Contact Our</span><br>Customer Support Centre
+            </div>
+            <div class="col-6">
+                <img src="../assets/macbook.png" alt=""  
+                class="rounded float-left" width="200" height="150">
+            </div>
+        </div>
+        <div class="bottom">
+            <label class="l1">Contact Informaton</label><br>
+            <label class="l2">Please fill out your contact information below.</label>
+        </div>
+    </div>
+    <!--Form Part-->
+    <form [formGroup] = "LoginForm">
+        <div class="form-group required">
+            <label class="control-label">Name</label>
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" tooltip="Enter First Name" 
+                    [class.is-invalid] = "LoginForm.get('userFirstName').invalid && LoginForm.get('userFirstName').touched"
+                    placement="bottom" class="form-control" formControlName="userFirstName">
+                    <small [class.d-none]="LoginForm.get('userFirstName').valid || LoginForm.get('userFirstName').untouched" 
+                    class="text-danger">First Name is required</small>
+                    <small [hidden]="!LoginForm.get('userFirstName').hasError('pattern')" class="text-danger">
+                        Only alphabets allowed
+                    </small>
+                </div>
+                <div class="col-4">
+                    <input type="text" tooltip="Enter Last Name" 
+                    [class.is-invalid] = "LoginForm.get('userLastName').invalid && LoginForm.get('userLastName').touched"
+                    placement="bottom" class="form-control" formControlName="userLastName">
+                    <small [class.d-none]="LoginForm.get('userLastName').valid || LoginForm.get('userLastName').untouched" 
+                    class="text-danger">Last Name is required</small>
+                    <small [hidden]="!LoginForm.get('userLastName').hasError('pattern')" class="text-danger">
+                        Only alphabets allowed
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-4">First Name</label>
+                <label class="col-4">Last Name</label>
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="control-label">Email</label>
+            <input type="text"  tooltip="Enter Email" 
+            [class.is-invalid] = "LoginForm.get('email').invalid && LoginForm.get('email').touched"
+            placement="bottom" class="form-control" formControlName="email">
+            <small [class.d-none]="LoginForm.get('email').valid || LoginForm.get('email').untouched"
+             class="text-danger">Email is required</small>
+            <small [hidden]="!LoginForm.get('email').hasError('pattern')" class="text-danger">Enter Valid Email</small>
+        </div>
+        <div class="form-group required">
+            <label class="control-label">Phone</label>
+            <input type="tel" tooltip="Enter Phone" 
+            [class.is-invalid] = "LoginForm.get('phone').invalid && LoginForm.get('phone').touched"
+            placement="bottom" class="form-control" formControlName="phone">
+            <small [class.d-none]="LoginForm.get('phone').valid || LoginForm.get('phone').untouched"  
+            class="text-danger">Phone is required and Should be 10 digits</small>
+            <small [hidden]="!LoginForm.get('phone').hasError('pattern')" class="text-danger">Only Digits allowed</small>
+        </div>
+        <div formGroupName = "AddressClass">
+            <div class="form-group required">
+                <label class="control-label">City</label>
+                <input type="text" tooltip="Enter City" 
+                [class.is-invalid] = "LoginForm.get('AddressClass.city').invalid && LoginForm.get('AddressClass.city').touched"
+                placement="bottom" class="form-control" formControlName="city">
+                <small [class.d-none]="LoginForm.get('AddressClass.city').valid || LoginForm.get('AddressClass.city').untouched" 
+                class="text-danger">City is required and contains at least 4 aplphabet</small>
+           </div>
+            <div class="form-group">
+                <select class="custom-select">
+                    <option>Select State</option> 
+                    <option class="form-control" *ngFor="let value of states">{{value}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Zip Code</label>
+                <input type="tel" tooltip="Enter Zip Code" 
+                [class.is-invalid] = "LoginForm.get('AddressClass.zipcode').invalid && LoginForm.get('AddressClass.zipcode').touched"
+                placement="bottom" class="form-control" formControlName="zipcode">
+                <small [hidden]="!LoginForm.get('AddressClass.zipcode').hasError('pattern')" 
+                class="text-danger">Only Digits allowed</small>
+                <small [class.d-none]="LoginForm.get('AddressClass.zipcode').valid || LoginForm.get('AddressClass.zipcode').untouched" class="text-danger">Contains 5 digits</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Comments</label>
+            <input type="text" tooltip="Add Comments" 
+            [class.is-invalid] = "LoginForm.get('comments').invalid && LoginForm.get('comments').touched"
+            placement="bottom" class="form-control" formControlName="comments">
+            <small [class.d-none]="LoginForm.get('comments').valid || LoginForm.get('comments').untouched" 
+            class="text-danger">Contains at least 30 characters</small>
+        </div>
+        <div style="text-align: center;">
+            <button class="btn btn-primary btnCls" type="submit" [disabled]="!LoginForm.valid">SUBMIT FORM</button>
+        </div>
+        
+    </form>   
+</div>
